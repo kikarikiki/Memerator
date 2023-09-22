@@ -1,7 +1,7 @@
 Meme Generator
 
-This little App was created while learning and practising React.
-In this project I focused on
+This little App was created while practicing and working on improving my skills in React.
+My main focus in the project was on
 
 <ul>  
   <li>Eventlisteners</li>
