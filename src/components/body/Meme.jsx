@@ -32,8 +32,8 @@ export default function Meme() {
 
   return (
     <main className='container'>
-      <div className="row mt-4">
-        <form className="row">
+      <div className="row justify-content-center mt-4">
+        <form className="col-md-8 row">
           <div className="form-group col-6">
             <input
               type="text"
