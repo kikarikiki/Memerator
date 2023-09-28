@@ -1,9 +1,8 @@
 import React from 'react';
-import './body.scss'
-import './meme.scss'
 import memesData from '../../memesData.js';
+import './meme.scss'
 
-export default function Body() {
+export default function Meme() {
 
   const [meme, setMeme] = React.useState({
     topText: "",
@@ -55,7 +54,7 @@ export default function Body() {
               onChange={handleChange}
             />
             <button
-              type="submit"
+              type="button"
               className="col-12 btn btn-dark my-3"
               onClick={getMemeImage}>Search
             </button>
