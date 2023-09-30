@@ -1,5 +1,4 @@
 import React from 'react';
-import memesData from '../../memesData.js';
 import './meme.scss'
 
 export default function Meme() {
@@ -9,11 +8,23 @@ export default function Meme() {
     bottomText: "",
     randomImage: "http://i.imgflip.com/1bij.jpg"
   })
-  const [allMemeImages, setAllMemeImages] = React.useState(memesData)
+  const [allMemes, setAllMemes] = React.useState([])
+
+  React.useEffect(() => {
+    // make call to API
+    fetch("https://api.imgflip.com/get_memes")
+    // take the response and parse Json into javascript
+    .then(res => res.json())
+    // take parsed data and give it to the state
+    .then(dataObj => {
+        //Save incoming Data (here just the array part [.data.memes]) in allMemes-Array
+        setAllMemes(dataObj.data.memes) // changing the state of 'allMemes' causes a rerender
+        })
+  }, []) // there is nothing in state that requires me to make another API request- so I have no dependencies
 
 
   function getMemeImage() {
-    const memesArray = allMemeImages.data.memes
+    const memesArray = allMemes
     const randomNumber = Math.floor(Math.random() * memesArray.length)
     const url = memesArray[randomNumber].url
     setMeme(prevMeme => ({
