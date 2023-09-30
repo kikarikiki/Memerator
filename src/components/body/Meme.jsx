@@ -10,6 +10,7 @@ export default function Meme() {
   })
   const [allMemes, setAllMemes] = React.useState([])
 
+  // Use Effect runs only after the DOM has been paited to the screen
   React.useEffect(() => {
     // make call to API
     fetch("https://api.imgflip.com/get_memes")
