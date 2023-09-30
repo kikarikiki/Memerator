@@ -10,18 +10,24 @@ export default function Meme() {
   })
   const [allMemes, setAllMemes] = React.useState([])
 
-  // Use Effect runs only after the DOM has been paited to the screen
+ /**
+   useEffect takes a function as its parameter. If that function
+   returns something, it needs to be a cleanup function. Otherwise,
+   it should return nothing. If we make it an async function, it
+   automatically retuns a promise instead of a function or nothing.
+   Therefore, if I want to use async operations inside of useEffect,
+   I need to define the function separately inside of the callback
+   function, as seen below:
+   */
+
   React.useEffect(() => {
-    // make call to API
-    fetch("https://api.imgflip.com/get_memes")
-    // take the response and parse Json into javascript
-    .then(res => res.json())
-    // take parsed data and give it to the state
-    .then(dataObj => {
-        //Save incoming Data (here just the array part [.data.memes]) in allMemes-Array
-        setAllMemes(dataObj.data.memes) // changing the state of 'allMemes' causes a rerender
-        })
-  }, []) // there is nothing in state that requires me to make another API request- so I have no dependencies
+    async function getMemes() {
+        const res = await fetch("https://api.imgflip.com/get_memes")
+        const data = await res.json()
+        setAllMemes(data.data.memes)
+    }
+    getMemes()
+}, [])
 
 
   function getMemeImage() {
